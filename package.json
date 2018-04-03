@@ -1,0 +1,30 @@
+{
+  "name": "cellarapi",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "denali server",
+    "test": "denali test"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "@denali-js/core": "^0.1.0",
+    "@denali-js/cli": "^0.1.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "@denali-js/babel": "^0.1.0",
+    "@denali-js/eslint": "^0.1.0"
+  },
+  "ava": {
+    "plugins": [],
+    "presets": []
+  }
+}
