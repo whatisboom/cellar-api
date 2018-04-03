@@ -1,4 +1,5 @@
 import ApplicationSerializer from './application';
+import BeerSerializer from './beer';
 
 export default class UserSerializer extends ApplicationSerializer {
 
@@ -8,6 +9,11 @@ export default class UserSerializer extends ApplicationSerializer {
     'lastName'
   ];
 
-  relationships = {};
+  relationships = {
+    beers: {
+      strategy: 'embed',
+      serializer: BeerSerializer
+    }
+  };
 
 }

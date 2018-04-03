@@ -1,4 +1,4 @@
-import { attr /*, hasOne, hasMany */ } from '@denali-js/core';
+import { attr, hasMany } from '@denali-js/core';
 import ApplicationModel from './application';
 
 export default class User extends ApplicationModel {
@@ -6,7 +6,8 @@ export default class User extends ApplicationModel {
   static schema = {
     username: attr('string'),
     firstName: attr('string'),
-    lastName: attr('string')
+    lastName: attr('string'),
+    beers: hasMany('beer')
   };
 
 }
