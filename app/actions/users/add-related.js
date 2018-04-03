@@ -1,16 +1,23 @@
 import ApplicationAction from '../application';
 import User from '../../models/user';
+import Beer from '../../models/beer';
 
 export default class AddBeerToUser extends ApplicationAction {
 
-  async respond({ params, newBeer }) {
+  async respond({ params, body }) {
     const user = await User.find(params.id);
-    const beers = user.getBeers();
-    
-    if (!beers.find(beer => beer.id == newBeer.id)) {
-      user.addBeer(newBeer);
+    const beers = await user.getBeers();
+
+    let existing = false;
+    if (
+      beers.filter(beer => beer.id === body.id).length === 0 // if it doesn't exist
+    ) {
+      existing = await Beer.find(body.id);
+      if (existing) {
+        await user.addBeer(existing);
+      }
     }
-    return newBeer; //await user.save();
+    return await user.save();
   }
 
 }
