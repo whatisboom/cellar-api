@@ -4,11 +4,11 @@ import User from '../../models/user';
 export default class FetchBeersForUser extends ApplicationAction {
 
   async respond({ params }) {
-    
     const user = await User.find(params.id);
-    // todo, genericize to use params.relation
     if (!user) { return []; } // todo, handle errors
-    return await user.getBeers();
+    return {
+      beers: await user.getBeers()
+    };
   }
 
 }
