@@ -3,4 +3,6 @@ import Role from '../serializers/role';
 
 const test = setupUnitTest();
 
-test.todo('RoleSerializer');
+test('RoleSerializer', (t) => {
+  t.is(typeof Role, 'object');
+});

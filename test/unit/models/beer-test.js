@@ -1,6 +1,10 @@
-import { setupUnitTest } from '@denali-js/core';
+import { attr, setupUnitTest } from '@denali-js/core';
 import Beer from '../models/beer';
 
 const test = setupUnitTest();
 
-test.todo('Beer Model');
+test('Beer Model', (t) => {
+  t.is(Beer.schema, {
+    name: attr('string')
+  })
+});

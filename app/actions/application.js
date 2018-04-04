@@ -1,11 +1,12 @@
+import { castArray, compact } from 'lodash';
 import { Action } from '@denali-js/core';
 
 export default class ApplicationAction extends Action {
 
   static before = ['authenticate', 'canEdit'];
 
-  protected = true;
-  requiresOwnership = true;
+  protected = false;
+  requiresOwnership = false;
 
   authenticate({ headers }) {
     if (this.protected) {
@@ -43,4 +44,14 @@ export default class ApplicationAction extends Action {
   filterExisting(collection, item) {
     return collection.filter(existing => existing.id === item.id)
   }
+
+  async validateRecords(Model, records) {
+    const promises = castArray(records).map(recordToAdd => {
+      return Model.find(recordToAdd.id);
+    });
+
+    /* eslint-disable-next-line no-undef */
+    return compact(await Promise.all(promises));
+  }
+
 }

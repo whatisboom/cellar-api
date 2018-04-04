@@ -1,4 +1,3 @@
-import { compact } from 'lodash';
 import ApplicationAction from '../application';
 import User from '../../models/user';
 import Beer from '../../models/beer';
@@ -29,18 +28,7 @@ export default class UpdateRelatedForUser extends ApplicationAction {
         break;
     }
 
-    
-    
     return await this.user.save();
-  }
-
-  async validateRecords(Model, records) {
-    const promises = records.map(recordToAdd => {
-      return Model.find(recordToAdd.id);
-    });
-
-    /* eslint-disable-next-line no-undef */
-    return compact(await Promise.all(promises));
   }
 
   async setBeers(beersToAdd) {

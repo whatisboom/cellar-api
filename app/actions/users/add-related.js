@@ -32,8 +32,11 @@ export default class AddRelatedToUser extends ApplicationAction {
     let validated = false;
     if ( !this.hasExisting(beers, beerToAdd) ) {
       validated = await Beer.find(beerToAdd.id);
+      
       if (validated) {
         await this.user.addBeer(validated);
+      } else {
+        this.render(400);
       }
     }
     return await this.user.save();
