@@ -3,6 +3,8 @@ import User from '../../models/user';
 
 export default class FetchBeersForUser extends ApplicationAction {
 
+  protected = false;
+
   async respond({ params }) {
     
     const user = await User.find(params.id);
