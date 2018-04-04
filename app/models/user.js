@@ -4,10 +4,11 @@ import ApplicationModel from './application';
 export default class User extends ApplicationModel {
 
   static schema = {
-    username: attr('string'),
+    beers: hasMany('beer'),
     firstName: attr('string'),
     lastName: attr('string'),
-    beers: hasMany('beer')
+    roles: hasMany('role'),
+    username: attr('string')
   };
 
 }

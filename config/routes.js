@@ -6,5 +6,6 @@ export default function drawRoutes(router) {
     related: true
   });
   router.resource('beers');
+  router.resource('roles');
 
 }

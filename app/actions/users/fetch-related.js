@@ -1,16 +1,29 @@
 import ApplicationAction from '../application';
 import User from '../../models/user';
 
-export default class FetchBeersForUser extends ApplicationAction {
+export default class FetchRelatedForUser extends ApplicationAction {
 
   protected = false;
 
   async respond({ params }) {
     
     const user = await User.find(params.id);
-    // todo, genericize to use params.relation
-    if (!user) { return []; } // todo, handle errors
-    return await user.getBeers();
+    
+    if (!user) {
+      this.render(404);
+      return;
+    } // todo, handle errors    
+    
+    switch (params.relation) {
+      case 'beers':
+        return await user.getBeers();
+      case 'roles':
+        return await user.getRoles();
+      default:
+        this.render(400);
+        break;
+    }
+
   }
 
 }
